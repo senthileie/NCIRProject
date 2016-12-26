@@ -4,8 +4,6 @@ InFile<-read.csv(file="C:/Users/VeluswamyS/Documents/GitHub/DATASET/cities_r2.cs
 #check the rows with Junk characters values
 InFile=subset(InFile, InFile$population_total!="*")
 InFile=subset(InFile, InFile$X0.6_population_total!="*")
-#write.csv(InFile,file="TESTFILE2.csv")
-
 #check the rows with missing values
 sum(is.na(InFile))
 #remove rows with missing values
@@ -25,7 +23,7 @@ library(moments)
 
 # check the dependancy between the "number of graduates" and the male population and the female population
 # The below covriance shows that there is a positive relation between the two parameters on the "number of graduates"  
-cov(InFile$population_female,InFile$total_graduates)
+  cov(InFile$population_female,InFile$total_graduates)
 cov(InFile$population_male,InFile$total_graduates)
 cov(InFile$population_total,InFile$total_graduates)
 cov(InFile$literates_female,InFile$total_graduates)
@@ -54,5 +52,7 @@ summary(lmodel)
 lmodel<-lm(InFile$total_graduates ~ InFile$population_male+InFile$literates_male, data = InFile )
 summary(lmodel)
 
-#scatterplot to see the relation between literacy rate of male and female
-plot(InFile$effective_literacy_rate_male,InFile$effective_literacy_rate_female,col=c("red","green","blue","yellow"))
+#scatterplot to see the relation between literacy rate of male and female and  the total literacy rate
+plot(InFile$effective_literacy_rate_total,InFile$effective_literacy_rate_female,col=c("blue","green"))
+plot(InFile$effective_literacy_rate_total,InFile$effective_literacy_rate_male,col=c("brown","green"))
+
